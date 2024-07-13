@@ -1,0 +1,94 @@
+5)  import java.util.Scanner;
+
+public class SpecialCharacters {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        StringBuilder specialChars = new StringBuilder();
+        int specialCharCount = 0;
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+            if (!Character.isLetterOrDigit(ch) && !Character.isWhitespace(ch)) {
+                specialChars.append(ch).append(" ");
+                specialCharCount++;
+            }
+        }
+
+
+
+6) import java.util.Scanner;
+
+public class VowelCount {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a statement: ");
+        String input = scanner.nextLine();
+
+        int vowelCount = 0;
+        String vowels = "aeiouAEIOU";
+
+        for (int i = 0; i < input.length(); i++) {
+            if (vowels.indexOf(input.charAt(i)) != -1) {
+                vowelCount++;
+            }
+        }
+
+        System.out.println("Number of vowels = " + vowelCount);
+    }
+}
+
+
+7)import java.util.Scanner;
+
+public class ConsonantsVowels {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a word: ");
+        String word = scanner.nextLine();
+
+        StringBuilder consonants = new StringBuilder();
+        StringBuilder vowels = new StringBuilder();
+        String vowelsStr = "aeiouAEIOU";
+
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            if (vowelsStr.indexOf(ch) != -1) {
+                vowels.append(ch).append(" ");
+            } else if (Character.isLetter(ch)) {
+                consonants.append(ch).append(" ");
+            }
+        }
+
+        System.out.println("Consonants: " + consonants.toString().trim());
+        System.out.println("Vowels: " + vowels.toString().trim());
+    }
+}
+
+
+8)import java.util.Scanner;
+
+public class CharacterSearch {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the string: ");
+        String input = scanner.nextLine();
+        System.out.print("Enter the character to be searched: ");
+        char searchChar = scanner.next().charAt(0);
+
+        boolean found = false;
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == searchChar) {
+                System.out.println(searchChar + " is found in string at index: " + i);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println(searchChar + " is not found in the string.");
+        }
+    }
+}
