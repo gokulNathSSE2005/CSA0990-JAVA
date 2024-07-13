@@ -1,0 +1,110 @@
+1) import java.util.Scanner;
+
+public class ReverseString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+        String reversed = "";
+
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed += input.charAt(i);
+        }
+
+        System.out.println("Reversed String: " + reversed);
+    }
+}
+
+
+
+2)import java.util.Scanner;
+
+public class StringToInteger {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        try {
+            int number = 0;
+            for (int i = 0; i < input.length(); i++) {
+                number = number * 10 + (input.charAt(i) - '0');
+            }
+            System.out.println("Output Integer: " + number);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a numeric string.");
+        }
+    }
+}
+
+
+
+3)import java.util.Scanner;
+
+public class UsernameValidation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        if (isValidUsername(username)) {
+            System.out.println("Username is valid.");
+        } else {
+            System.out.println("Username is invalid.");
+        }
+    }
+
+    public static boolean isValidUsername(String username) {
+        if (username.length() < 5 || username.length() > 15) {
+            return false;
+        }
+
+        for (int i = 0; i < username.length(); i++) {
+            char ch = username.charAt(i);
+            if (!Character.isLetterOrDigit(ch)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+
+
+
+4)import java.util.Arrays;
+import java.util.Scanner;
+
+public class SortNames {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of names: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();  // Consume the newline character
+        
+        String[] names = new String[n];
+        
+        System.out.println("Enter the names: ");
+        for (int i = 0; i < n; i++) {
+            names[i] = scanner.nextLine();
+        }
+        
+        System.out.print("Order (A/D): ");
+        char order = scanner.next().charAt(0);
+        
+        if (order == 'A' || order == 'a') {
+            Arrays.sort(names);
+        } else if (order == 'D' || order == 'd') {
+            Arrays.sort(names, (a, b) -> b.compareTo(a));
+        } else {
+            System.out.println("Invalid order choice. Please enter 'A' for ascending or 'D' for descending.");
+            return;
+        }
+        
+        System.out.println("Sorted names:");
+        for (String name : names) {
+            System.out.println(name);
+        }
+    }
+}
