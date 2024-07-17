@@ -2,19 +2,19 @@
 
 1. Interface for Animal
 
-java
+
 interface Animal {
     void eat();
     void sleep();
 }
 
 class Dog implements Animal {
-    @Override
+    
     public void eat() {
         System.out.println("Dog is eating");
     }
 
-    @Override
+   
     public void sleep() {
         System.out.println("Dog is sleeping");
     }
@@ -36,13 +36,13 @@ output:Dog is eating
 
 2. Interface for Shape
 
-java
+
 interface Shape {
     void draw();
 }
 
 class Circle implements Shape {
-    @Override
+   
     public void draw() {
         System.out.println("Circle is drawn");
     }
@@ -59,19 +59,19 @@ output:Circle is drawn
 
 3. Interface for Vehicle
 
-java
+
 interface Vehicle {
     void start();
     void stop();
 }
 
 class Car implements Vehicle {
-    @Override
+   
     public void start() {
         System.out.println("Car is starting");
     }
 
-    @Override
+   
     public void stop() {
         System.out.println("Car is stopping");
     }
@@ -90,4 +90,4 @@ Car is stopping
 
 
 
-These programs demonstrate interface usage in Java by creating classes that implement interfaces and provide implementation for the interface methods. Feel free to run these programs to see how interfaces work in Java.
+
