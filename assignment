@@ -1,0 +1,282 @@
+1) 
+class Base {
+    
+    void area(int a, int b) {
+        if (a == b) {
+            int area = a * a;
+            System.out.println("Area of square: " + area);
+        } else {
+            System.out.println("Not a square. Both sides must be equal.");
+        }
+    }
+}
+
+
+class Derived extends Base {
+    
+    void area(int a, int b) {
+        int area = a * b;
+        System.out.println("Area of rectangle: " + area);
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Base baseObj = new Base();
+        Derived derivedObj = new Derived();
+        
+        
+        baseObj.area(5, 5);  // This should print the area of a square
+        
+      
+        derivedObj.area(5, 10);  // This should print the area of a rectangle
+    }
+}
+
+
+2)
+class Base {
+    int a;
+    int b;
+
+    Base() {
+        this.a = 10;
+        this.b = 15;
+    }
+
+       Base(int a, int b) {
+        this.a = 20;
+        this.b = 25;
+    }
+
+
+    void disp() {
+        System.out.println("a: " + a + ", b: " + b);
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Base baseObjDefault = new Base();
+        baseObjDefault.disp();  // This should print a: 10, b: 15
+
+        
+        Base baseObjParam = new Base(20, 25);
+        baseObjParam.disp();  // This should print a: 20, b: 25
+    }
+}
+
+3) // Parent class
+class Parent {
+    // Method to print even numbers from 1 to 20
+    void even() {
+        System.out.println("Even numbers from 1 to 20:");
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Method to print odd numbers from 1 to 20
+    void odd() {
+        System.out.println("Odd numbers from 1 to 20:");
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 != 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Method to print prime numbers from 1 to 20
+    void prime() {
+        System.out.println("Prime numbers from 1 to 20:");
+        for (int i = 2; i <= 20; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Helper method to check if a number is prime
+    boolean isPrime(int num) {
+        if (num <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+}
+
+// Child class
+class Child extends Parent {
+    // Overriding method to print even numbers from 1 to 30
+    @Override
+    void even() {
+        System.out.println("Even numbers from 1 to 30:");
+        for (int i = 1; i <= 30; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Overriding method to print odd numbers from 1 to 30
+    @Override
+    void odd() {
+        System.out.println("Odd numbers from 1 to 30:");
+        for (int i = 1; i <= 30; i++) {
+            if (i % 2 != 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Overriding method to print prime numbers from 1 to 30
+    @Override
+    void prime() {
+        System.out.println("Prime numbers from 1 to 30:");
+        for (int i = 2; i <= 30; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+
+// Main class to test the program
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object of the child class
+        Child childObj = new Child();
+
+        // Calling overridden methods using the child class object
+        childObj.even();   // This should print even numbers from 1 to 30
+        childObj.odd();    // This should print odd numbers from 1 to 30
+        childObj.prime();  // This should print prime numbers from 1 to 30
+    }
+}
+
+4)public class Main {
+    // Method 1: sum with two int parameters
+    int sum(int a, int b) {
+        return a + b;
+    }
+
+    // Method 2: sum with three int parameters (increasing number of parameters)
+    int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Method 3: sum with one int parameter (decreasing number of parameters)
+    int sum(int a) {
+        return a;
+    }
+
+    // Method 4: sum with two double parameters (changing data types)
+    double sum(double a, double b) {
+        return a + b;
+    }
+
+    // Method 5: sum with two float parameters (changing data types)
+    float sum(float a, float b) {
+        return a + b;
+    }
+
+    // Method 6: sum with two parameters in reverse order (interchanging parameters)
+    int sum(int b, String a) {
+        return Integer.parseInt(a) + b;
+    }
+
+    // Main method to test the overloaded methods
+    public static void main(String[] args) {
+        Main obj = new Main();
+
+        // Testing the overloaded methods
+        System.out.println("Sum of 2 and 3 (int): " + obj.sum(2, 3));               // Method 1
+        System.out.println("Sum of 1, 2, and 3 (int): " + obj.sum(1, 2, 3));       // Method 2
+        System.out.println("Sum of 5 (int): " + obj.sum(5));                       // Method 3
+        System.out.println("Sum of 2.5 and 3.5 (double): " + obj.sum(2.5, 3.5));   // Method 4
+        System.out.println("Sum of 1.2f and 3.4f (float): " + obj.sum(1.2f, 3.4f));// Method 5
+        System.out.println("Sum of 4 and \"6\" (int and String): " + obj.sum(4, "6")); // Method 6
+    }
+}
+
+5)// Define the Tree interface
+interface Tree {
+    // Method to handle fruits with 2 parameters
+    void fruits(int count, String type);
+    
+    // Method to handle leaves with 3 parameters
+    void leaves(int count, String color, String shape);
+    
+    // Method to handle flowers with 4 parameters
+    void flowers(int count, String color, String type, boolean fragrance);
+}
+
+// Implementing Tree interface in Branch1 class
+class Branch1 implements Tree {
+    @Override
+    public void fruits(int count, String type) {
+        System.out.println("Branch1 - Number of fruits: " + count + ", Type: " + type);
+    }
+    
+    @Override
+    public void leaves(int count, String color, String shape) {
+        System.out.println("Branch1 - Number of leaves: " + count + ", Color: " + color + ", Shape: " + shape);
+    }
+    
+    @Override
+    public void flowers(int count, String color, String type, boolean fragrance) {
+        System.out.println("Branch1 - Number of flowers: " + count + ", Color: " + color + ", Type: " + type + ", Fragrance: " + fragrance);
+    }
+}
+
+// Implementing Tree interface in Branch2 class
+class Branch2 implements Tree {
+    @Override
+    public void fruits(int count, String type) {
+        System.out.println("Branch2 - Number of fruits: " + count + ", Type: " + type);
+    }
+    
+    @Override
+    public void leaves(int count, String color, String shape) {
+        System.out.println("Branch2 - Number of leaves: " + count + ", Color: " + color + ", Shape: " + shape);
+    }
+    
+    @Override
+    public void flowers(int count, String color, String type, boolean fragrance) {
+        System.out.println("Branch2 - Number of flowers: " + count + ", Color: " + color + ", Type: " + type + ", Fragrance: " + fragrance);
+    }
+}
+
+// Main class to test the program
+public class Main {
+    public static void main(String[] args) {
+        // Creating objects of Branch1 and Branch2
+        Tree branch1 = new Branch1();
+        Tree branch2 = new Branch2();
+        
+        // Testing Branch1 methods
+        branch1.fruits(10, "Apple");
+        branch1.leaves(50, "Green", "Oval");
+        branch1.flowers(30, "Red", "Rose", true);
+        
+        // Testing Branch2 methods
+        branch2.fruits(15, "Mango");
+        branch2.leaves(60, "Yellow", "Round");
+        branch2.flowers(20, "White", "Lily", false);
+    }
+}
+
+
+
