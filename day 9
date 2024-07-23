@@ -1,0 +1,321 @@
+6) import java.util.HashSet;
+   import java.util.Set;
+
+public class UniquePermutations {
+    public static void main(String[] args) {
+        
+        printUniquePermutations("143");
+        printUniquePermutations("0");
+        printUniquePermutations("111");
+        printUniquePermutations("505");
+        printUniquePermutations("-143");
+        printUniquePermutations("-598");
+    }
+
+    private static void printUniquePermutations(String number) {
+        System.out.println("Given Number: " + number);
+        System.out.println("Permutations are:");
+        
+        if (number.startsWith("-")) {
+            number = number.substring(1);
+            Set<String> permutations = new HashSet<>();
+            generatePermutations("", number, permutations);
+            for (String perm : permutations) {
+                System.out.println("-" + perm);
+            }
+        } else {
+            Set<String> permutations = new HashSet<>();
+            generatePermutations("", number, permutations);
+            for (String perm : permutations) {
+                System.out.println(perm);
+            }
+        }
+        System.out.println();
+    }
+
+    private static void generatePermutations(String prefix, String str, Set<String> permutations) {
+        int n = str.length();
+        if (n == 0) {
+            permutations.add(prefix);
+        } else {
+            for (int i = 0; i < n; i++) {
+                generatePermutations(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n), permutations);
+            }
+        }
+    }
+}
+
+7) import java.util.ArrayList;
+   import java.util.List;
+   import java.util.Scanner;
+
+public class NumberSquarePairs {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+       
+        testCase(scanner, 50, 100);
+        testCase(scanner, 5, 8);
+        testCase(scanner, 10, 5);
+        testCase(scanner, 500, 500);
+        testCase(scanner, 0, -100);
+    }
+
+    private static void testCase(Scanner scanner, int lower, int upper) {
+        System.out.println("Enter lower range: " + lower);
+        System.out.println("Enter upper range: " + upper);
+        List<int[]> result = createNumberSquareArray(lower, upper);
+        System.out.println("Output:");
+        System.out.print("[");
+        for (int i = 0; i < result.size(); i++) {
+            int[] pair = result.get(i);
+            System.out.print("(" + pair[0] + ", " + pair[1] + ")");
+            if (i < result.size() - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+        System.out.println();
+    }
+
+    private static List<int[]> createNumberSquareArray(int lower, int upper) {
+        List<int[]> list = new ArrayList<>();
+        
+        if (lower > upper) {
+            System.out.println("Invalid range. Lower range cannot be greater than upper range.");
+            return list;
+        }
+        
+        for (int i = lower; i <= upper; i++) {
+            list.add(new int[]{i, i * i});
+        }
+        
+        return list;
+    }
+}
+
+
+
+8)import java.util.Scanner;
+
+class BankAccount {
+    private String depositorName;
+    private int accountNumber;
+    private String accountType;
+    private double balanceAmount;
+    private static final double MINIMUM_BALANCE = 500.00;
+
+    public BankAccount(String depositorName, int accountNumber, String accountType, double balanceAmount) {
+        this.depositorName = depositorName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balanceAmount = balanceAmount;
+    }
+
+    public void displayBalance() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Depositor Name: " + depositorName);
+        System.out.println("Account Type: " + accountType);
+        System.out.println("Balance Amount: Rs. " + balanceAmount);
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balanceAmount += amount;
+            System.out.println("Amount deposited successfully. New balance: Rs. " + balanceAmount);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0) {
+            if (balanceAmount - amount >= MINIMUM_BALANCE) {
+                balanceAmount -= amount;
+                System.out.println("Amount withdrawn successfully. New balance: Rs. " + balanceAmount);
+            } else {
+                System.out.println("Insufficient balance. Minimum balance of Rs. 500.00 must be maintained.");
+            }
+        } else {
+            System.out.println("Invalid withdraw amount.");
+        }
+    }
+
+    public static void main(String[] args) {
+       
+        BankAccount account = new BankAccount("Default User", 0, "S", 10000);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter account number: ");
+        int accountNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter depositor name: ");
+        String depositorName = scanner.nextLine();
+        System.out.print("Enter account type (S/C): ");
+        String accountType = scanner.nextLine().toUpperCase();
+
+        account = new BankAccount(depositorName, accountNumber, accountType, 10000);
+        account.displayBalance();
+
+        
+        testCases(account);
+
+        scanner.close();
+    }
+
+    private static void testCases(BankAccount account) {
+        
+        System.out.println("\nTest Case 1: Deposit Rs. 8000");
+        account.deposit(8000);
+        account.displayBalance();
+
+
+        System.out.println("\nTest Case 2: Withdraw Rs. 9000");
+        account.withdraw(9000);
+        account.displayBalance();
+
+      
+        System.out.println("\nTest Case 3: Withdraw Rs. 12000");
+        account.withdraw(12000);
+        account.displayBalance();
+
+      
+        System.out.println("\nTest Case 4: Withdraw Rs. 8000");
+        account.withdraw(8000);
+        account.displayBalance();
+
+        
+        System.out.println("\nTest Case 5: Deposit Rs. 10000");
+        account.deposit(10000);
+        account.displayBalance();
+    }
+}
+
+
+9) import java.util.Scanner;
+
+public class ReverseAndAddPalindrome {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Test cases
+        runTestCase("8765");
+        runTestCase("-8765");
+        runTestCase("0");
+        runTestCase("EIGHT FIVE");
+        runTestCase("87.57");
+
+        scanner.close();
+    }
+
+    private static void runTestCase(String input) {
+        try {
+            long number = Long.parseLong(input);
+            if (number < 0) {
+                System.out.println("Negative numbers are not supported.");
+                return;
+            }
+            long result = reverseAndAddUntilPalindrome(number);
+            System.out.println("Final palindrome for input " + input + " is: " + result);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input: " + input + ". Please enter a valid integer.");
+        }
+    }
+
+    private static long reverseAndAddUntilPalindrome(long number) {
+        while (!isPalindrome(number)) {
+            long reversedNumber = reverseNumber(number);
+            System.out.println(number + " + " + reversedNumber + " = " + (number + reversedNumber));
+            number += reversedNumber;
+        }
+        return number;
+    }
+
+    private static long reverseNumber(long number) {
+        long reversed = 0;
+        while (number != 0) {
+            reversed = reversed * 10 + number % 10;
+            number /= 10;
+        }
+        return reversed;
+    }
+
+    private static boolean isPalindrome(long number) {
+        return number == reverseNumber(number);
+    }
+}
+
+
+
+
+10)import java.util.Scanner;
+
+class Customer {
+    private int accountNo;
+    private String accName;
+    private double balance;
+
+    public Customer(int accountNo, String accName, double balance) {
+        this.accountNo = accountNo;
+        this.accName = accName;
+        this.balance = balance;
+    }
+
+    public synchronized void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit operation success, balance amount: " + balance);
+        notify();
+    }
+
+    public synchronized void withdraw(double amount) {
+        while (balance < amount) {
+            System.out.println("Insufficient balance, waiting for deposit...");
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Withdraw interrupted");
+            }
+        }
+        balance -= amount;
+        System.out.println("Withdraw operation success, balance amount: " + balance);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Customer customer = new Customer(12345, "John Doe", 10000);
+
+        System.out.println("Enter amount to withdraw: ");
+        String withdrawInput = scanner.nextLine();
+
+        System.out.println("Enter amount to deposit: ");
+        String depositInput = scanner.nextLine();
+
+        try {
+            double withdrawAmount = Double.parseDouble(withdrawInput);
+            double depositAmount = Double.parseDouble(depositInput);
+
+            Thread withdrawThread = new Thread(() -> customer.withdraw(withdrawAmount));
+            Thread depositThread = new Thread(() -> customer.deposit(depositAmount));
+
+            withdrawThread.start();
+            depositThread.start();
+
+            withdrawThread.join();
+            depositThread.join();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input, please enter numeric values.");
+        } catch (InterruptedException e) {
+            System.out.println("Operation interrupted.");
+        }
+
+        scanner.close();
+    }
+}
+
